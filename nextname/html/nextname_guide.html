@@ -1,0 +1,491 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      -->
+<title>NEXTNAME User Guide</title>
+<meta name="generator" content="MATLAB 25.2">
+<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/">
+<meta name="DC.date" content="2026-03-12">
+<meta name="DC.source" content="nextname_guide.m">
+<style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style>
+</head>
+<body>
+<div class="content">
+<h1>
+<tt>NEXTNAME</tt> User Guide</h1>
+<!--introduction-->
+<p>The function <a href="https://www.mathworks.com/matlabcentral/fileexchange/64108"><tt>NEXTNAME</tt></a> returns a file or folder name, incrementing an integer value such that the returned name is not currently used by any file or folder.</p>
+<p>
+<tt>NEXTNAME</tt> supports <b>two</b> different input syntaxes, please read this documentation carefully to select the syntax suitable for your usecase.</p>
+<!--/introduction-->
+<h2>Contents</h2>
+<div>
+<ul>
+<li>
+<a href="#1">Syntax 1: Basic Usage</a>
+</li>
+<li>
+<a href="#2">Syntax 2: Separate Basename, Suffix, Extension</a>
+</li>
+<li>
+<a href="#3">Folders Too</a>
+</li>
+<li>
+<a href="#4">Optional Input: Absolute/Relative Filepath</a>
+</li>
+<li>
+<a href="#5">Optional Input: Include Path in the Output Name</a>
+</li>
+<li>
+<a href="#6">Output 2: Integer Number</a>
+</li>
+<li>
+<a href="#7">Output 3: Array of Folder Names</a>
+</li>
+<li>
+<a href="#8">Integer Start Value</a>
+</li>
+<li>
+<a href="#9">Integer Leading Zeros</a>
+</li>
+<li>
+<a href="#10">Using <tt>FILEPARTS</tt>' Outputs</a>
+</li>
+<li>
+<a href="#11">Natural Sort Order with <tt>NATSORTFILES</tt></a>
+</li>
+</ul>
+</div>
+<h2 id="1">Syntax 1: Basic Usage</h2>
+<p>Call <tt>NEXTNAME</tt> with a <tt>filename</tt> which contains one integer within angle brackets (aka less/greater than symbols), other integers are ignored. The integer specifies the value to start incrementing from. For example creating new files in an empty folder and starting from the value 1:</p>
+<pre class="codeinput">name = nextname(<span class="string">'A_&lt;1&gt;.txt'</span>) <span class="comment">% syntax 1</span>
+dlmwrite(name,0)
+name = nextname(<span class="string">'A_&lt;1&gt;.txt'</span>) <span class="comment">% syntax 1</span>
+dlmwrite(name,0)
+name = nextname(<span class="string">'A_&lt;1&gt;.txt'</span>) <span class="comment">% syntax 1</span>
+dlmwrite(name,0)
+</pre>
+<pre class="codeoutput">name =
+    'A_1.txt'
+name =
+    'A_2.txt'
+name =
+    'A_3.txt'
+</pre>
+<h2 id="2">Syntax 2: Separate Basename, Suffix, Extension</h2>
+<p>Three inputs are required:</p>
+<div>
+<ol>
+<li>The file or folder <tt>basename</tt>, without any file extension. If the location to check for existing files/folders is not the current directory then the <tt>basename</tt> must include an absolute or relative path to that location. All characters are treated literally.</li>
+<li>A <tt>suffix</tt> that will get appended on to the end of the <tt>basename</tt>. The <tt>suffix</tt> must contain exactly one integer number (zero or greater), and may contain any other non-digit characters as required. The integer specifies the value to start incrementing from.</li>
+<li>The file <tt>extension</tt>, e.g. <tt>'.txt'</tt>, <tt>'.mat'</tt>, <tt>'.csv'</tt>, etc. Use <tt>''</tt> for folder names or for files that do not require an extension.</li>
+</ol>
+</div>
+<p>Note that <tt>basename</tt> and <tt>extension</tt> are easily obtained using <a href="https://www.mathworks.com/help/matlab/ref/fileparts.html"><tt>FILEPARTS</tt></a>.</p>
+<p>Some <tt>suffix</tt> examples:</p>
+<div>
+<ul>
+<li>
+<tt>'0'</tt>
+</li>
+<li>
+<tt>'_1'</tt>
+</li>
+<li>
+<tt>'(005)'</tt>
+</li>
+<li>
+<tt>'.copy.100'</tt>
+</li>
+<li>
+<tt>' 00001 backup'</tt>
+</li>
+<li>etc.</li>
+</ul>
+</div>
+<pre class="codeinput">name = nextname(<span class="string">'A'</span>,<span class="string">'_1'</span>,<span class="string">'.txt'</span>) <span class="comment">% syntax 2</span>
+dlmwrite(name,0)
+name = nextname(<span class="string">'A'</span>,<span class="string">'_1'</span>,<span class="string">'.txt'</span>) <span class="comment">% syntax 2</span>
+dlmwrite(name,0)
+name = nextname(<span class="string">'A'</span>,<span class="string">'_1'</span>,<span class="string">'.txt'</span>) <span class="comment">% syntax 2</span>
+dlmwrite(name,0)
+</pre>
+<pre class="codeoutput">name =
+    'A_4.txt'
+name =
+    'A_5.txt'
+name =
+    'A_6.txt'
+</pre>
+<h2 id="3">Folders Too</h2>
+<p>
+<tt>NEXTNAME</tt> can also check and return folder names. For example:</p>
+<pre class="codeinput">subd = nextname(<span class="string">'B_&lt;0&gt;'</span>) <span class="comment">% syntax 1</span>
+mkdir(subd)
+subd = nextname(<span class="string">'B_&lt;0&gt;'</span>) <span class="comment">% syntax 1</span>
+mkdir(subd);
+subd = nextname(<span class="string">'B_&lt;0&gt;'</span>) <span class="comment">% syntax 1</span>
+mkdir(subd);
+subd = nextname(<span class="string">'B'</span>,<span class="string">'_0'</span>,<span class="string">''</span>) <span class="comment">% syntax 2</span>
+mkdir(subd);
+subd = nextname(<span class="string">'B'</span>,<span class="string">'_0'</span>,<span class="string">''</span>) <span class="comment">% syntax 2</span>
+mkdir(subd);
+subd = nextname(<span class="string">'B'</span>,<span class="string">'_0'</span>,<span class="string">''</span>) <span class="comment">% syntax 2</span>
+mkdir(subd);
+</pre>
+<pre class="codeoutput">subd =
+    'B_0'
+subd =
+    'B_1'
+subd =
+    'B_2'
+subd =
+    'B_3'
+subd =
+    'B_4'
+subd =
+    'B_5'
+</pre>
+<h2 id="4">Optional Input: Absolute/Relative Filepath</h2>
+<p>An absolute/relative filepath may be included within <tt>filename</tt> (syntax 1) or within <tt>basename</tt> (syntax 2). Alternatively the <tt>filepath</tt> may be provided as the first input argument with either syntax 1 or syntax 2:</p>
+<pre class="codeinput">nextname(subd,<span class="string">'file(&lt;1&gt;).txt'</span>)     <span class="comment">% syntax 1</span>
+nextname(subd,<span class="string">'file'</span>,<span class="string">'(1)'</span>,<span class="string">'.txt'</span>) <span class="comment">% syntax 2</span>
+</pre>
+<pre class="codeoutput">ans =
+    'file(1).txt'
+ans =
+    'file(1).txt'
+</pre>
+<h2 id="5">Optional Input: Include Path in the Output Name</h2>
+<p>By default the output name includes the folder/filename only. Optional trailing input <tt>withpath</tt> specifies if the output should include the relative/absolute path as provided in <tt>filename</tt>, <tt>basename</tt>, or <tt>filepath</tt>. Note that <tt>NEXTNAME</tt> does not fully qualify or expand the path.</p>
+<pre class="codeinput">nextname(subd,<span class="string">'file(&lt;1&gt;).txt'</span>,true)     <span class="comment">% syntax 1</span>
+nextname(subd,<span class="string">'file'</span>,<span class="string">'(1)'</span>,<span class="string">'.txt'</span>,true) <span class="comment">% syntax 2</span>
+</pre>
+<pre class="codeoutput">ans =
+    'B_5\file(1).txt'
+ans =
+    'B_5\file(1).txt'
+</pre>
+<h2 id="6">Output 2: Integer Number</h2>
+<p>The 2nd output gives the integer number used by the returned name:</p>
+<pre class="codeinput">[name,val] = nextname(<span class="string">'A_&lt;1&gt;.txt'</span>)
+</pre>
+<pre class="codeoutput">name =
+    'A_7.txt'
+val =
+  uint64
+   7
+</pre>
+<h2 id="7">Output 3: Array of Folder Names</h2>
+<p>The 3rd output gives the path as an array of folder names (note that the path is not expanded or qualified in any way):</p>
+<pre class="codeinput">[name,~,fpa] = nextname(subd,<span class="string">'file(&lt;1&gt;).txt'</span>)
+</pre>
+<pre class="codeoutput">name =
+    'file(1).txt'
+fpa =
+  1&times;1 cell array
+    {'B_5'}
+</pre>
+<h2 id="8">Integer Start Value</h2>
+<p>The <tt>suffix</tt> or <tt>filename</tt> must contain one integer number which specifies the start value for incrementing from. The number must be an integer (zero or greater). <tt>NEXTNAME</tt> will find the next unused file (or folder) name, starting from the provided value. For example:</p>
+<pre class="codeinput">name = nextname(<span class="string">'A_&lt;100&gt;.txt'</span>) <span class="comment">% start from one hundred.</span>
+dlmwrite(name,0)
+name = nextname(<span class="string">'A_&lt;100&gt;.txt'</span>)
+dlmwrite(name,0)
+name = nextname(<span class="string">'A_&lt;0&gt;.txt'</span>) <span class="comment">% start from zero.</span>
+dlmwrite(name,0)
+name = nextname(<span class="string">'A_&lt;0&gt;.txt'</span>)
+dlmwrite(name,0)
+</pre>
+<pre class="codeoutput">name =
+    'A_100.txt'
+name =
+    'A_101.txt'
+name =
+    'A_0.txt'
+name =
+    'A_7.txt'
+</pre>
+<h2 id="9">Integer Leading Zeros</h2>
+<p>By default the output number has no leading zeros, which means the output filename changes length depending on the number of digits in the output number. Fixed-width names can be specified using the integer: the number used in the output name is zero-padded to ensure that it has the same (minimum) width as the provided integer has. Leading zeros can be included in the integer number to achieve this length.</p>
+<p>Note that <tt>NEXTNAME</tt> compares the number values (not literal strings), which ensures that all file/folder names have unique number values, i.e. this means that <tt>'A_01.txt'</tt> will not be returned if the filenames <tt>'A_1.txt'</tt> or <tt>'A_001.txt'</tt> or <tt>'A_0001.txt'</tt> etc. already exist.</p>
+<p>For example, starting from one (with minimum four digits):</p>
+<pre class="codeinput">name = nextname(<span class="string">'A_&lt;0001&gt;.txt'</span>)
+dlmwrite(name,0)
+name = nextname(<span class="string">'A_&lt;0001&gt;.txt'</span>)
+dlmwrite(name,0)
+</pre>
+<pre class="codeoutput">name =
+    'A_0008.txt'
+name =
+    'A_0009.txt'
+</pre>
+<h2 id="10">Using <tt>FILEPARTS</tt>' Outputs</h2>
+<p>The recommended approach to calling <tt>NEXTNAME</tt> using the outputs from <a href="https://www.mathworks.com/help/matlab/ref/fileparts.html"><tt>FILEPARTS</tt></a>:</p>
+<pre class="codeinput">given = <span class="string">'A.txt'</span>;
+[P,N,X] = fileparts(given);
+name = nextname(P,N,<span class="string">'_1'</span>,X,true)
+dlmwrite(name,0)
+</pre>
+<pre class="codeoutput">name =
+    'A_10.txt'
+</pre>
+<h2 id="11">Natural Sort Order with <tt>NATSORTFILES</tt>
+</h2>
+<p>Once files are saved in a directory the order in which the names are returned by the OS/filesystem may not be the same as the number order. An easy way to sort filenames or directory names into <a href="https://en.wikipedia.org/wiki/Natural_sort_order"><i>natural sort order</i></a> is to download my FEX submission <a href="https://www.mathworks.com/matlabcentral/fileexchange/47434"><tt>NATSORTFILES</tt></a>:</p>
+<pre class="codeinput">S = dir(<span class="string">'A_*.txt'</span>); <span class="comment">% OS order</span>
+display({S.name}.')
+S = natsortfiles(S); <span class="comment">% natural sort order</span>
+display({S.name}.')
+</pre>
+<pre class="codeoutput">  13&times;1 cell array
+    {'A_0.txt'   }
+    {'A_0008.txt'}
+    {'A_0009.txt'}
+    {'A_1.txt'   }
+    {'A_10.txt'  }
+    {'A_100.txt' }
+    {'A_101.txt' }
+    {'A_2.txt'   }
+    {'A_3.txt'   }
+    {'A_4.txt'   }
+    {'A_5.txt'   }
+    {'A_6.txt'   }
+    {'A_7.txt'   }
+  13&times;1 cell array
+    {'A_0.txt'   }
+    {'A_1.txt'   }
+    {'A_2.txt'   }
+    {'A_3.txt'   }
+    {'A_4.txt'   }
+    {'A_5.txt'   }
+    {'A_6.txt'   }
+    {'A_7.txt'   }
+    {'A_0008.txt'}
+    {'A_0009.txt'}
+    {'A_10.txt'  }
+    {'A_100.txt' }
+    {'A_101.txt' }
+</pre>
+<p class="footer">
+<br>
+<a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2025b</a>
+<br>
+</p>
+</div>
+<!--
+##### SOURCE BEGIN #####
+%% |NEXTNAME| User Guide
+%
+% The function <https://www.mathworks.com/matlabcentral/fileexchange/64108
+% |NEXTNAME|> returns a file or folder name, incrementing an integer value
+% such that the returned name is not currently used by any file or folder.
+%
+% |NEXTNAME| supports *two* different input syntaxes, please read this
+% documentation carefully to select the syntax suitable for your usecase.
+%
+%% Syntax 1: Basic Usage
+%
+% Call |NEXTNAME| with a |filename| which contains one integer within angle
+% brackets (aka less/greater than symbols), other integers are ignored.
+% The integer specifies the value to start incrementing from. For example
+% creating new files in an empty folder and starting from the value 1:
+name = nextname('A_<1>.txt') % syntax 1
+dlmwrite(name,0)
+name = nextname('A_<1>.txt') % syntax 1
+dlmwrite(name,0)
+name = nextname('A_<1>.txt') % syntax 1
+dlmwrite(name,0)
+%% Syntax 2: Separate Basename, Suffix, Extension
+%
+% Three inputs are required:
+%
+% # The file or folder |basename|, without any file extension. If the
+%   location to check for existing files/folders is not the current
+%   directory then the |basename| must include an absolute or relative
+%   path to that location. All characters are treated literally.
+% # A |suffix| that will get appended on to the end of the |basename|. The
+%   |suffix| must contain exactly one integer number (zero or greater),
+%   and may contain any other non-digit characters as required. The
+%   integer specifies the value to start incrementing from.
+% # The file |extension|, e.g. |'.txt'|, |'.mat'|, |'.csv'|, etc. Use
+%   |''| for folder names or for files that do not require an extension.
+%
+% Note that |basename| and |extension| are easily obtained using
+% <https://www.mathworks.com/help/matlab/ref/fileparts.html |FILEPARTS|>.
+%
+% Some |suffix| examples:
+%
+% * |'0'|
+% * |'_1'|
+% * |'(005)'|
+% * |'.copy.100'|
+% * |' 00001 backup'|
+% * etc.
+name = nextname('A','_1','.txt') % syntax 2
+dlmwrite(name,0)
+name = nextname('A','_1','.txt') % syntax 2
+dlmwrite(name,0)
+name = nextname('A','_1','.txt') % syntax 2
+dlmwrite(name,0)
+%% Folders Too
+%
+% |NEXTNAME| can also check and return folder names. For example:
+subd = nextname('B_<0>') % syntax 1
+mkdir(subd)
+subd = nextname('B_<0>') % syntax 1
+mkdir(subd);
+subd = nextname('B_<0>') % syntax 1
+mkdir(subd);
+subd = nextname('B','_0','') % syntax 2
+mkdir(subd);
+subd = nextname('B','_0','') % syntax 2
+mkdir(subd);
+subd = nextname('B','_0','') % syntax 2
+mkdir(subd);
+%% Optional Input: Absolute/Relative Filepath
+%
+% An absolute/relative filepath may be included within |filename| (syntax
+% 1) or within |basename| (syntax 2). Alternatively the |filepath| may be
+% provided as the first input argument with either syntax 1 or syntax 2:
+nextname(subd,'file(<1>).txt')     % syntax 1
+nextname(subd,'file','(1)','.txt') % syntax 2
+%% Optional Input: Include Path in the Output Name
+%
+% By default the output name includes the folder/filename only. Optional
+% trailing input |withpath| specifies if the output should include the
+% relative/absolute path as provided in |filename|, |basename|, or |filepath|. 
+% Note that |NEXTNAME| does not fully qualify or expand the path.
+nextname(subd,'file(<1>).txt',true)     % syntax 1
+nextname(subd,'file','(1)','.txt',true) % syntax 2
+%% Output 2: Integer Number
+%
+% The 2nd output gives the integer number used by the returned name:
+[name,val] = nextname('A_<1>.txt')
+%% Output 3: Array of Folder Names
+%
+% The 3rd output gives the path as an array of folder names
+% (note that the path is not expanded or qualified in any way):
+[name,~,fpa] = nextname(subd,'file(<1>).txt')
+%% Integer Start Value
+%
+% The |suffix| or |filename| must contain one integer number which
+% specifies the start value for incrementing from. The number must be an
+% integer (zero or greater). |NEXTNAME| will find the next unused file
+% (or folder) name, starting from the provided value. For example:
+name = nextname('A_<100>.txt') % start from one hundred.
+dlmwrite(name,0)
+name = nextname('A_<100>.txt')
+dlmwrite(name,0)
+name = nextname('A_<0>.txt') % start from zero.
+dlmwrite(name,0)
+name = nextname('A_<0>.txt')
+dlmwrite(name,0)
+%% Integer Leading Zeros
+%
+% By default the output number has no leading zeros, which means the
+% output filename changes length depending on the number of digits in the
+% output number. Fixed-width names can be specified using the integer:
+% the number used in the output name is zero-padded to ensure that
+% it has the same (minimum) width as the provided integer has. Leading
+% zeros can be included in the integer number to achieve this length.
+%
+% Note that |NEXTNAME| compares the number values (not literal strings),
+% which ensures that all file/folder names have unique number values, i.e.
+% this means that |'A_01.txt'| will not be returned if the filenames
+% |'A_1.txt'| or |'A_001.txt'| or |'A_0001.txt'| etc. already exist.
+%
+% For example, starting from one (with minimum four digits):
+name = nextname('A_<0001>.txt')
+dlmwrite(name,0)
+name = nextname('A_<0001>.txt')
+dlmwrite(name,0)
+%% Using |FILEPARTS|' Outputs
+%
+% The recommended approach to calling |NEXTNAME| using the outputs from
+% <https://www.mathworks.com/help/matlab/ref/fileparts.html |FILEPARTS|>:
+given = 'A.txt';
+[P,N,X] = fileparts(given);
+name = nextname(P,N,'_1',X,true)
+dlmwrite(name,0)
+%% Natural Sort Order with |NATSORTFILES|
+%
+% Once files are saved in a directory the order in which the names are
+% returned by the OS/filesystem may not be the same as the number order.
+% An easy way to sort filenames or directory names into
+% <https://en.wikipedia.org/wiki/Natural_sort_order _natural sort order_>
+% is to download my FEX submission
+% <https://www.mathworks.com/matlabcentral/fileexchange/47434 |NATSORTFILES|>:
+S = dir('A_*.txt'); % OS order
+display({S.name}.')
+S = natsortfiles(S); % natural sort order
+display({S.name}.')
+##### SOURCE END #####
+-->
+</body>
+</html>

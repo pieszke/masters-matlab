@@ -25,11 +25,11 @@ Load the file when calling `dca1000()` in matlab.
 
 Open the [record](record.mlx) live script.
 
-## HW CONFIGURATION
+### HW CONFIGURATION
 
 Choose the radar type and optionally load your desired configuration. Run the configuration section to configure the radar and connect to DCA1000.
 
-## MEASUREMENT
+### MEASUREMENT
 
 In the second section select the quantifiers for the measurement and when ready run the section.
 
@@ -53,7 +53,7 @@ Measurements are stored in folders. Their names consist of parts joined with an 
   - sneak (snk)
 - person index from the [people list](#people)
 
-## People:
+### People:
 
 0. Jakub P.
 1. Kamil W.

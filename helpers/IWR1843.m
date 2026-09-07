@@ -4,7 +4,7 @@ classdef IWR1843
 
     properties
         lambda = 3.8e-3; % measured from design files
-        scanAnglesRange=[-80 80];
+        scanAnglesRange=[-70 70];
         angleArray;
         rxArray;
         vArray;

@@ -11,7 +11,7 @@ hold on
 imagesc(rngGrid,1:size(vals,2),vals')
 % imagesc(rngGridPart,1:size(vals,2),vals(rngIdxs,:))
 hold off
-xlabel("Odległość [m]")
+xlabel("Dystans [m]")
 xlim([rngGrid(1) rngGrid(end)])
 ylabel("Wirtualne anteny odbiorcze")
 ylim([0.5 12.5])

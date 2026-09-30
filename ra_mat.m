@@ -32,7 +32,7 @@ for frN = 1:numFrames
     angSize = [size(cube, 1), numel(iwr.mvdrEstimator.ScanAngles)];
     angOut = zeros(angSize);
     for i = 1:angSize(1)
-        angOut(i, :) = iwr.mvdrEstimator(squeeze(cube(i, :, :))');
+        angOut(i, :) = iwr.mvdrEstimator(squeeze(cube(i, :, :))').^2;
     end
     DATA(:, :, frN) = angOut;
 end

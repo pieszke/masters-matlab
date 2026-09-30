@@ -34,7 +34,7 @@ angSize = [size(cube, 1), numel(iwr.mvdrEstimator.ScanAngles)];
 angOut = zeros(angSize);
 for i = 1:angSize(1)
     part = squeeze(cube(i, :, :));
-    angOut(i, :) = iwr.mvdrEstimator(part');
+    angOut(i, :) = iwr.mvdrEstimator(part').^2;
 end
 
 angFFT = fftshift(fft(cube,angFftLength,2),2);
@@ -49,7 +49,24 @@ ylabel("Dystans [m]")
 title("Kątowe FFT")
 
 nexttile
-imagesc(iwr.mvdrEstimator.ScanAngles,rngGrid,angOut.^2);
+imagesc(iwr.mvdrEstimator.ScanAngles,rngGrid,angOut);
 xlabel("Kąt [°]")
 ylabel("Dystans [m]")
+title("Metoda MVDR")
+
+
+showDist=17;
+rngGrid(showDist)
+figure
+
+tiledlayout(1,2,"TileSpacing","tight")
+
+nexttile
+plot(angFftGrid,angFFT(showDist,angFftIdx));
+xlabel("Kąt [°]")
+title("Kątowe FFT")
+
+nexttile
+plot(iwr.mvdrEstimator.ScanAngles,angOut(showDist,:));
+xlabel("Kąt [°]")
 title("Metoda MVDR")

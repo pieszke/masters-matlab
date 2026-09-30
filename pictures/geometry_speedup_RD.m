@@ -1,20 +1,26 @@
 
-data_src = "C:\Users\kpiec\OneDrive - Politechnika Łódzka\Studia\2Sem3\magisterka\pomiary\IWR1843BOOST\hall-along_side_fw_5\measurement_002";
-% data_src = "C:\Users\kpiec\OneDrive - Politechnika Łódzka\Studia\2Sem3\magisterka\pomiary\IWR1843BOOST\hall-end_side_sw_0\measurement_002";
 
 timesDesc = ["Tworzenie mapy", "CFAR", "Filtracja detekcji", "Śledzenie"];
-series=["Brak filtracji", "Filtracja po CFAR", "Zredukowany CFAR"];
+series=["Brak filtracji","Filtracja po CFAR"];
+series = [series+" A" series+" B"];
 
 serNum = numel(series);
 data=cell(serNum*2,1);
-for n=1:serNum*2
-    data{n} = load(sprintf("%s\\RA_stats_%02d.mat",data_src, n), "times", "detStat");
-end
 
+data_src = "C:\Users\kpiec\OneDrive - Politechnika Łódzka\Studia\2Sem3\magisterka\pomiary\IWR1843BOOST\hall-along_side_fw_5\measurement_002";
+for n=1:serNum
+    data{n} = load(sprintf("%s\\RD_stats_%02d.mat",data_src, n), "times", "detStat");
+    data{n}.times = cat(2,data{n}.times, data{n}.times);
+    data{n}.detStat = cat(2,data{n}.detStat, data{n}.detStat);
+end
+data_src = "C:\Users\kpiec\OneDrive - Politechnika Łódzka\Studia\2Sem3\magisterka\pomiary\IWR1843BOOST\hall-end_side_sw_0\measurement_002";
+for n=1:serNum
+    data{n+serNum} = load(sprintf("%s\\RD_stats_%02d.mat",data_src, n), "times", "detStat");
+end
 timesDesc = [timesDesc "Suma"];
 
-timesSize=size(data{1}.times);
-times = zeros([serNum timesSize(1)+1,timesSize(2)*2]);
+timesSize = size(data{5}.times);
+times = zeros([serNum timesSize(1)+1, timesSize(2)*2]);
 detStat = zeros([serNum size(data{1}.detStat).*[1 2]]);
 for n=1:serNum
     times(n,1:end-1,:)=cat(2,data{2*n-1}.times,data{2*n}.times);
@@ -48,7 +54,7 @@ bar(prctl')
 xticklabels(string(vals))
 ylabel("Czas [s]")
 subplot(1,2,2)
-bar((prctl./max(prctl,[],1))')
+bar(([prctl(1:2,:)./(max(prctl(1:2,:),[],1)); prctl(3:4,:)./(max(prctl(3:4,:),[],1))])')
 l=legend(series,"Orientation","horizontal");
 pos=l.Position;
 set(l,'Position',[(1-pos(3))/2 0.05 pos(3) pos(4)]);

@@ -17,7 +17,7 @@ classdef IWR1843
 
     methods
         function obj = IWR1843(radarConfigurationOrPath)
-            if isstring(radarConfigurationOrPath)
+            if isstring(radarConfigurationOrPath)||ischar(radarConfigurationOrPath)
                 if isfolder(radarConfigurationOrPath)
                     radarConfigurationOrPath = fileWithSuffix(radarConfigurationOrPath,"ers.mat");
                 end
@@ -62,7 +62,7 @@ classdef IWR1843
                 'RangeWindow','Hamming', ...
                 'ReferenceRangeCentered',false);
             
-            scanAngles = obj.scanAnglesRange(1):obj.scanAnglesRange(2);
+            scanAngles = obj.scanAnglesRange(1):1:obj.scanAnglesRange(2);
             obj.mvdrEstimator = phased.MVDREstimator( ...
                 SensorArray=obj.angleArray,OperatingFrequency=fc, ...
                 ScanAngles=scanAngles);

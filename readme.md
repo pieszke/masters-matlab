@@ -44,6 +44,7 @@ Measurements are stored in folders. Their names consist of parts joined with an 
   |-|-|-|-|
   |310|Room 310|![alt text](pictures/310_setup.jpg)|![alt text](pictures/310_radar_pov.jpg)|
   |hall-along|3rd floor hallway end|![alt text](pictures/hall-along_setup.jpg)|![alt text](pictures/hall-along_radar_pov.jpg)|
+  |hall-end|3rd floor hallway end|![alt text](pictures/hall-end_setup.jpg)|![alt text](pictures/hall-end_radar_pov.jpg)|
 - radar position (relative to test subjects)
   - side - radar at ~1.2 meters
 - type
